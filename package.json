@@ -1,6 +1,6 @@
 {
   "name": "nidhis-webc",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Can log \"hello world\" and \"do addition and multiplication\" to the console!",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
