@@ -1,4 +1,5 @@
-import "nidhis-webc";
+import "nidhis-webc/dist/Multiplication";
+import "nidhis-webc/dist/Hello";
 function App() {
   return (
     <div className="App">
