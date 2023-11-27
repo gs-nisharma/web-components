@@ -6,6 +6,14 @@
     <title>Document</title>
   </head>
   <body>
-    <my-counter></my-counter>
+    <my-counter initialcount="0" message="My message"></my-counter>
+    <script>
+      for (let t = 0; t < 5; t++)
+        setTimeout(() => {
+          document
+            .querySelector("my-counter")
+            .setAttribute("message", "my message is changing " + t.toString());
+        }, 3e3 * t);
+    </script>
   </body>
 </html>

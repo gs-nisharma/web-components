@@ -1,12 +1,21 @@
 import { useState } from "react";
-const Counter = () => {
-  const [count, setCount] = useState(0);
 
+const CounterWrapper = ({ message, initialcount }) => {
   return (
     <div>
-      Hey there! Count is {count}.{" "}
-      <button onClick={() => setCount(count + 1)}></button>
+      <p>{message}</p>
+      <Counter initialcount={initialcount} />
     </div>
   );
 };
-export default Counter;
+const Counter = ({ initialcount }) => {
+  const [count, setCount] = useState(parseInt(initialcount));
+
+  return (
+    <div>
+      Hey there! Count is {count}. InitialValue is {initialcount}
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
+};
+export default CounterWrapper;

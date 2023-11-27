@@ -19,7 +19,8 @@ export default function defineElement(
     }
 
     setterProxy(name, value) {
-      this.attributeChangedCallback(name, value, value); // Careful, this is a bug, since the oldVal always equals the new val
+      const oldValue = this.getAttribute(name);
+      this.attributeChangedCallback(name, oldValue, value);
     }
 
     connectedCallback() {
@@ -36,6 +37,7 @@ export default function defineElement(
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
+      console.log("attribute changed : ", name, oldValue, newValue);
       const { instance } = this;
       if (!instance) return;
       const newProps = { ...this.props, ...{ [name]: newValue } };
@@ -47,6 +49,7 @@ export default function defineElement(
     }
 
     assignEvents(instance) {
+      console.log("Assign Events: ", this.events);
       this.events.forEach(
         (event) =>
           (instance.props[event] = (eventArgs) =>
