@@ -1,25 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <script type="module" src="src/index.js"></script>
+    <meta charset="utf-8" />
+    <title>Lit Starter Kit</title>
   </head>
   <body>
-    <simple-counter open_alert="open_alert()"></simple-counter>
-    <script>
-      const open_alert = () => {
-        alert("opening alert");
-      };
-      document.querySelector("simple-counter").setAttribute(
-        "count",
-        JSON.stringify({
-          count: 5,
-          name: "my counter",
-          action: () => alert("fdk"),
-        })
-      );
-    </script>
+    <a href="/dev/index.html">Component Demo</a>
   </body>
 </html>
