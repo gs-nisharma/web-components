@@ -1,11 +1,5 @@
-/**
- * @license
- * Copyright 2019 Google LLC
- * SPDX-License-Identifier: BSD-3-Clause
- */
-
-import {LitElement, html, css} from 'lit';
-import {customElement, property} from 'lit/decorators.js';
+import { LitElement, html, css } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
 
 /**
  * An example element.
@@ -34,8 +28,24 @@ export class MyElement extends LitElement {
   /**
    * The number of times the button has been clicked.
    */
-  @property({type: Number})
+  @property({ type: Number })
   count = 0;
+
+  // @property({
+  //   converter: {
+  //     fromAttribute: (value: string) => {
+  //       return JSON.parse(value)
+  //     },
+  //     toAttribute: (value) => {
+  //       return JSON.stringify(value)
+  //     }
+  //   }
+  // })
+  @property({ type: Object })
+  object = {
+    name: "m",
+    count: 0
+  }
 
   override render() {
     return html`
@@ -43,11 +53,13 @@ export class MyElement extends LitElement {
       <button @click=${this._onClick} part="button">
         Click Count: ${this.count}
       </button>
+      <h2>${this.object?.name} : ${this.object?.count}</h2>
       <slot></slot>
     `;
   }
 
   private _onClick() {
+    this.object.count++;
     this.count++;
     this.dispatchEvent(new CustomEvent('count-changed'));
   }
