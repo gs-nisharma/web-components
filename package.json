@@ -1,0 +1,29 @@
+{
+  "name": "nidhis-webc-with-hybrids",
+  "version": "1.0.0",
+  "description": "Simple counter example from hybrids docs, a library for creating web components from plain object and pure functions!",
+  "default": "index.html",
+  "scripts": {
+    "start": "parcel index.html --open",
+    "build": "parcel build index.html"
+  },
+  "dependencies": {
+    "hybrids": "8.1.13",
+    "parcel": "^2.10.3",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.6.1"
+  },
+  "keywords": [
+    "web components",
+    "custom elements",
+    "hybrids",
+    "counter",
+    "shadow dom",
+    "framework"
+  ],
+  "@parcel/resolver-default": {
+    "packageExports": true
+  }
+}
