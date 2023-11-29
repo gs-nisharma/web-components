@@ -20,6 +20,17 @@ export namespace Components {
          */
         "middle": string;
     }
+    interface TodoComponent {
+        "action": () => void;
+        /**
+          * Todoo list
+         */
+        "todos": Array<Object>;
+    }
+    interface TodoItem {
+        "desc": string;
+        "done"?: boolean;
+    }
 }
 declare global {
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
@@ -28,8 +39,22 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    interface HTMLTodoComponentElement extends Components.TodoComponent, HTMLStencilElement {
+    }
+    var HTMLTodoComponentElement: {
+        prototype: HTMLTodoComponentElement;
+        new (): HTMLTodoComponentElement;
+    };
+    interface HTMLTodoItemElement extends Components.TodoItem, HTMLStencilElement {
+    }
+    var HTMLTodoItemElement: {
+        prototype: HTMLTodoItemElement;
+        new (): HTMLTodoItemElement;
+    };
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
+        "todo-component": HTMLTodoComponentElement;
+        "todo-item": HTMLTodoItemElement;
     }
 }
 declare namespace LocalJSX {
@@ -47,8 +72,21 @@ declare namespace LocalJSX {
          */
         "middle"?: string;
     }
+    interface TodoComponent {
+        "action"?: () => void;
+        /**
+          * Todoo list
+         */
+        "todos"?: Array<Object>;
+    }
+    interface TodoItem {
+        "desc"?: string;
+        "done"?: boolean;
+    }
     interface IntrinsicElements {
         "my-component": MyComponent;
+        "todo-component": TodoComponent;
+        "todo-item": TodoItem;
     }
 }
 export { LocalJSX as JSX };
@@ -56,6 +94,8 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "todo-component": LocalJSX.TodoComponent & JSXBase.HTMLAttributes<HTMLTodoComponentElement>;
+            "todo-item": LocalJSX.TodoItem & JSXBase.HTMLAttributes<HTMLTodoItemElement>;
         }
     }
 }
