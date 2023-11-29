@@ -1,6 +1,6 @@
 {
   "name": "nidhis-lit-webc",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A simple web component",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
