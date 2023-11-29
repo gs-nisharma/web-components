@@ -1,7 +1,7 @@
 dist/
 www/
 loader/
-
+webc/
 *~
 *.sw[mnpcod]
 *.log

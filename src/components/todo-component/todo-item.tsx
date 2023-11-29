@@ -9,8 +9,10 @@ export class TodoItem {
   @Prop() done?: boolean;
 
   render() {
-    <li>
-      {this.desc} <input type="checkbox" checked={this.done} />
-    </li>;
+    return (
+      <li>
+        <span>{this.desc}</span> <input type="checkbox" checked={this.done} />
+      </li>
+    );
   }
 }

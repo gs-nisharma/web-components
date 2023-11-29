@@ -13,7 +13,7 @@ export class TodoComponent {
   @State() input: string = '';
 
   private addTodo = () => {
-    this.todos = [...this.todos, { desc: this.input }];
+    this.todos = [...this.todos, { desc: this.input, done: false }];
     this.input = '';
   };
   render() {
@@ -22,9 +22,9 @@ export class TodoComponent {
     return (
       <div>
         <ol>
-          {this.todos.map(v => (
-            <todo-item desc={v['desc']} done={v['done']}></todo-item>
-          ))}
+          {this.todos.map(v => {
+            return <todo-item desc={v['desc']} done={v['done'] || false}></todo-item>;
+          })}
         </ol>
         <button onClick={this.action}>Action!</button>
         <input type="text" value={this.input} onChange={e => (this.input = (e.target as HTMLInputElement).value)} />
