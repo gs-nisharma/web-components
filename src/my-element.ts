@@ -1,5 +1,47 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html, css, } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import { createRef, Ref, ref } from 'lit/directives/ref.js';
+
+@customElement('todo-item')
+export class TodoItem extends LitElement {
+  @property({ type: String })
+  value = ""
+  @property({ type: Boolean })
+  completed = false
+  override render() {
+    return html`
+      <li>${this.value}<input type='checkbox' ?checked=${this.completed} @change=${this.toggle}></li>
+    `
+  }
+  toggle(e: Event) {
+    this.completed = (e.target as HTMLInputElement).checked;
+  }
+}
+@customElement('to-do')
+export class Todo extends LitElement {
+  @property({ type: Array })
+  todos = Array();
+  inputRef: Ref<HTMLInputElement> = createRef();
+
+  override render() {
+    return html`
+    <input type="text" ${ref(this.inputRef)}/>
+    <button @click=${this._add}>Add Item</button>
+      <ol>
+        ${this.todos.map(v => html`<todo-item value="${v.desc}" ?completed=${v.complete}></todo-item>`)}
+      </ol>
+    `;
+  }
+  private _add() {
+    const value = this.inputRef.value?.value
+    console.log(value)
+    this.todos.push({ "desc": value, "complete": false })
+    this.inputRef.value && (this.inputRef.value.value = "");
+    this.requestUpdate();
+  }
+
+}
+
 
 /**
  * An example element.
@@ -76,5 +118,7 @@ export class MyElement extends LitElement {
 declare global {
   interface HTMLElementTagNameMap {
     'my-element': MyElement;
+    'to-do': Todo;
+    'todo-item': TodoItem;
   }
 }
