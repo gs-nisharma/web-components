@@ -18,15 +18,15 @@
     <my-element name="waht" object='{ "name": "world", "count": 5 }'>
       <p>
         This is the todo
-        <to-do
-          todos='[{"desc": "do this", "complete":true},{"desc": "do that", "complete":false}]'
-        ></to-do>
+        <to-do></to-do>
       </p>
     </my-element>
     <script>
-      // document
-      //   .querySelector("my-element")
-      //   .setAttribute("object", { name: "world", count: 5 });
+      document.querySelector("to-do").todos = [
+        { desc: "do this", complete: true },
+        { desc: "do that", complete: false },
+      ];
+      document.querySelector("to-do").action = () => alert("hiee");
     </script>
   </body>
 </html>

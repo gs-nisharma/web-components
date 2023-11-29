@@ -4,17 +4,20 @@ import { createRef, Ref, ref } from 'lit/directives/ref.js';
 
 @customElement('todo-item')
 export class TodoItem extends LitElement {
-  @property({ type: String })
-  value = ""
-  @property({ type: Boolean })
-  completed = false
+  @property({ type: Object })
+  todo = {
+    desc: "", complete: false
+  }
+  @property({ attribute: false })
+  action = () => { }
+
   override render() {
     return html`
-      <li>${this.value}<input type='checkbox' ?checked=${this.completed} @change=${this.toggle}></li>
-    `
+    <li>${this.todo.desc}<input type='checkbox' ?checked=${this.todo.complete} @change=${this.toggle}><button @click=${this.action}></button></li>
+  `
   }
   toggle(e: Event) {
-    this.completed = (e.target as HTMLInputElement).checked;
+    this.todo.complete = (e.target as HTMLInputElement).checked;
   }
 }
 @customElement('to-do')
@@ -22,13 +25,14 @@ export class Todo extends LitElement {
   @property({ type: Array })
   todos = Array();
   inputRef: Ref<HTMLInputElement> = createRef();
-
+  @property({ attribute: false })
+  action = () => { }
   override render() {
     return html`
     <input type="text" ${ref(this.inputRef)}/>
     <button @click=${this._add}>Add Item</button>
       <ol>
-        ${this.todos.map(v => html`<todo-item value="${v.desc}" ?completed=${v.complete}></todo-item>`)}
+        ${this.todos.map(v => html`<todo-item .todo=${v} .action=${this.action}></todo-item>`)}
       </ol>
     `;
   }
