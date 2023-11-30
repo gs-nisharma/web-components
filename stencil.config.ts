@@ -1,4 +1,5 @@
 import { Config } from '@stencil/core';
+import { reactOutputTarget } from '@stencil/react-output-target';
 
 export const config: Config = {
   namespace: 'nidhis-stencil-webc',
@@ -17,6 +18,10 @@ export const config: Config = {
       type: 'www',
       serviceWorker: null, // disable service workers
     },
+    reactOutputTarget({
+      componentCorePackage: 'nidhis-stencil-webc',
+      proxiesFile: 'stencil-react-proxy.ts',
+    }),
   ],
   testing: {
     browserHeadless: "new",
